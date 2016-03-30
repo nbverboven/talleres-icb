@@ -10,15 +10,15 @@ def esPrimo(x):
 
 #Devuelve en x-ésimo primo de Mersenne.
 def Orion(x):
-    i = 0
+    contador = 0
     j = 0
 #Se inicializa esta variable con 2 puesto que es el primer caso de interés.
 #(2**2) - 1 = 3, que resulta el primer primo de la forma (2**n) - 1.
     potencia = 2
-    while i < x:
+    while contador < x:
         j = (2**potencia) - 1
         if esPrimo(j):
 #Este contador aumenta con cada primo de Mersenne hallado.
-            i += 1
+            contador += 1
         potencia += 1
     return j
