@@ -1,12 +1,14 @@
+from math import sqrt
+
 #La función devuelve True si x solamente posee 2 divisores:
 #1 y él mismo.
 def esPrimo(x):
     contador = 0
-    for posible_divisor in range(1, x+1):
+    for posible_divisor in range(2, int(sqrt(x))+1):
         if x%posible_divisor == 0:
 #El contador almacena el número de divisores de x.
             contador += 1
-    return contador == 2
+    return contador == 0
 
 #Devuelve en x-ésimo primo de Mersenne.
 def Orion(x):
