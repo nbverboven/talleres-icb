@@ -15,3 +15,17 @@ def interpretar(csv):
                 linea[j] = float(linea[j])
         res.append(linea)
     return res
+
+def main(entrada, salida, tamano):
+    f = open(entrada, 'r')
+    archivo_interpretado = interpretar(f)
+    f.close()
+    if len(archivo_interpretado) > 1:
+        archivo_interpretado = np.array(archivo_interpretado)
+        res = magia(archivo_interpretado, tamano)
+    else:
+        res = np.array(archivo_interpretado)
+    g = open(salida, 'w')
+    for i in range(res.shape[0]):
+        g.write(','.join(map(str, res[i])) + '\n')
+    g.close()
