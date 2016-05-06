@@ -33,7 +33,7 @@ def ventanaDeslizante(lista, tamano):
     cota_sup = tamano-1
     while cota_sup < len(lista):
         if type(lista[cota_inf]) == float or type(lista[cota_inf]) == str:
-            c = promedio(lista[cota_inf:cota_sup])
+            c = promedio(lista[cota_inf:cota_sup+1])
         else:
             c = (lista[cota_sup] - lista[cota_inf]).total_seconds()
         res.append(c)
