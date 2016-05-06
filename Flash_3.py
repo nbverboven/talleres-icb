@@ -27,6 +27,30 @@ def promedio(lista):
         res = round(suma / i, 2)
     return res
 
+def ventanaDeslizante(lista, tamano):
+    res = []
+    cota_inf = 0
+    cota_sup = tamano-1
+    while cota_sup < len(lista):
+        if type(lista[cota_inf]) == float or type(lista[cota_inf]) == str:
+            c = promedio(lista[cota_inf:cota_sup])
+        else:
+            c = (lista[cota_sup] - lista[cota_inf]).total_seconds()
+        res.append(c)
+        cota_inf += 1
+        cota_sup += 1
+    return res        
+
+def magia(arreglo, tamano):
+    res = []
+    for i in range(0, arreglo.shape[1]):
+        col = arreglo[:, i]
+        col = ventanaDeslizante(col, tamano)
+        res.append(col)
+    res = np.array(res)
+    res = np.transpose(res)
+    return res
+
 def main(entrada, salida, tamano):
     f = open(entrada, 'r')
     archivo_interpretado = interpretar(f)
