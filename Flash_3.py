@@ -3,6 +3,10 @@ import sys
 import math
 import numpy as np
 
+entrada = sys.argv[1]
+salida = sys.argv[2]
+tamano = int(sys.argv[3])
+
 def interpretar(csv):
     res = []
     for i in csv.readlines():
@@ -64,3 +68,5 @@ def main(entrada, salida, tamano):
     for i in range(res.shape[0]):
         g.write(','.join(map(str, res[i])) + '\n')
     g.close()
+
+print(main(entrada, salida, tamano))
