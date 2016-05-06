@@ -16,6 +16,17 @@ def interpretar(csv):
         res.append(linea)
     return res
 
+def promedio(lista):
+    res = 'NA'
+    i = 0
+    suma = 0
+    while i < len(lista) and not(lista[i] == 'NA' or lista[i] == 'NA\n'):
+        suma += lista[i]
+        i += 1
+    if i == len(lista):
+        res = round(suma / i, 2)
+    return res
+
 def main(entrada, salida, tamano):
     f = open(entrada, 'r')
     archivo_interpretado = interpretar(f)
