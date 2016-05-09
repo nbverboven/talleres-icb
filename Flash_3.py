@@ -7,7 +7,7 @@ entrada = sys.argv[1]
 salida = sys.argv[2]
 tamano = int(sys.argv[3])
 
-# Interpreta elemento a elemento (entendiendo como tal a lo que está comprendido entra ',') 
+# Interpreta elemento a elemento (entendiendo como tal a lo que está comprendido entre ',') 
 # cada línea del archivo .csv que se le pasa como parámetro.
 # Convierte los timestamps al formato IS-8601, los numeros a float y mantiene los 'NA' como strings.
 # Genera una lista de listas en donde cada elemento corresponde a la interpretación de una línea. 
