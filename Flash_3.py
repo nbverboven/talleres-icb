@@ -58,7 +58,7 @@ def ventanaDeslizante(lista, tamano):
 
 # Devuelve el resultado de aplicar ventanaDeslizante a cada columna del arreglo que recibe
 # como parámetro.
-def magia(arreglo, tamano):
+def analizarPorColumnas(arreglo, tamano):
     res = []
     # arreglo.shape[1] = número de columnas.
     for i in range(0, arreglo.shape[1]):
@@ -79,7 +79,7 @@ def main(entrada, salida, tamano):
     # Si el archivo de entrada posee una sola linea (o ninguna), el de salida será igual.
     if len(archivo_interpretado) > 1:
         archivo_interpretado = np.array(archivo_interpretado)
-        res = magia(archivo_interpretado, tamano)
+        res = analizarPorColumnas(archivo_interpretado, tamano)
     else:
         res = np.array(archivo_interpretado)
     g = open(salida, 'w')
