@@ -1,9 +1,11 @@
 #Verifica que un elento se encuentre en una lista.
 def estaEn(elemento, lista):
 	flag = False
-	for i in lista:
+    i = 0
+    while i < len(lista) and flag == False:
 		if i == elemento:
 			flag = True
+        i += 1
 	return flag
 
 #Cuenta la cantida de elementos de la lista1 presentes en la lista2.
@@ -30,7 +32,7 @@ def decreceHastaElFinal(lista):
 def listaTriangular(lista):
 	flag = False
 	indice_actual = 0
-	while  indice_actual < len(lista)-1 and lista[indice_actual] < lista[indice_actual+1]:
+	while  indice_actual < len(lista)-1 and lista[indice_actual] < lista[indice_actual+1] and flag == False:
 		if decreceHastaElFinal(lista[indice_actual+1:]):
 			flag = True
 		indice_actual += 1
