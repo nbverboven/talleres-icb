@@ -1,40 +1,50 @@
-import numpy as np
 
-asd = np.array([[False, False,  True, False],
- 			  [ True, False, False, False],
- 			  [False, False, False,  True],
- 			  [False,  True, False, False]])
+asd1 = [[False, False,  True, False],
+ 		[ True, False, False, False],
+ 		[False, False, False,  True],
+ 		[False,  True, False, False]]
+
+asd2 = [[True, False,  True, False],
+ 		[ True, False, False, False],
+ 		[False, False, False,  True],
+ 		[False,  True, False, False]]
+
+
+def filaOk(lista):
+	reinas_en_fila = lista.count(True)
+	return reinas_en_fila == 1
+
+def columnaOk(tablero, pos_columna):
+	reinas_en_columna = 0
+	for fila in tablero:
+		if fila[pos_columna]:
+			reinas_en_columna += 1
+	return reinas_en_columna == 1
 
 def diagonalesOk(tablero, pos_fila, pos_columna):
-	return np.diag(tablero, pos_columna-pos_fila).sum() == 1 and np.diag(tablero.transpose(), pos_fila).sum() == 1
-	# i = 0
-	# flag = True
-	# while i < tablero.shape[0] and flag:
-	# 	j = 0
-	# 	while j < tablero.shape[1] and flag:
-	# 		if abs(pos_fila - i) == abs(pos_columna - j) and not (pos_fila == i) and not( pos_columna == j) and tablero[i, j]:
-	# 			flag = False
-	# 		j += 1
-	# 	i += 1
-	# return flag
+	diagonales = []
+	for fila in range(len(tablero)):
+		for columna in range(len(tablero)):
+			if abs(pos_fila - fila) == abs(pos_columna - columna):
+				diagonales.append(tablero[fila][columna])
+	return diagonales.count(True) == 1
 
 def noAmenazada(tablero, pos_fila, pos_columna):
-	return tablero[pos_fila, :].sum() == 1 and tablero[:, pos_columna].sum() == 1 and diagonalesOk(tablero, pos_fila, pos_columna)
+	return filaOk(tablero[pos_fila]) and columnaOk(tablero, pos_columna) and diagonalesOk(tablero, pos_fila, pos_columna)
 
 def resolver(tablero, numero_reinas, fila):
 	if numero_reinas == 0:
 		return True
 	else:
-		for columna in range(tablero.shape[1]):
-			print(tablero)
-			tablero[fila, columna] = True
-			if not (sinAmenazas(tablero, fila, columna) and resolver(tablero, numero_reinas-1, fila+1)):
+		for columna in range(len(tablero)):
+			tablero[fila][columna] = True
+			if not(noAmenazada(tablero, fila, columna) and resolver(tablero, numero_reinas-1, fila+1)):
 				tablero[fila][columna] = False
 			else:
 				return True
-		return False
 
 def NReinas(n):
-	tablero = np.array([[False for i in range(n)] for j in range(n)])
+	tablero = [[False for fila in range(n)] for j in range(n)]
 	resolver(tablero, n, 0)
-	print(tablero)
+	for i in tablero:
+		print(str(i) + '\n')
