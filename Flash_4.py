@@ -26,7 +26,7 @@ def diagonalesOk(tablero, pos_fila, pos_columna):
 # Devuelve True si, para una dada reina en una posicion tablero[pos_fila][pos_columna], 
 # esta es la unica en su fila, su columna y en las dos diagonales que contienen su
 # ubicacion.
-def noAmenazada(tablero, pos_fila, pos_columna):
+def reinaNoAmenazada(tablero, pos_fila, pos_columna):
 	return filaOk(tablero[pos_fila]) and columnaOk(tablero, pos_columna) and diagonalesOk(tablero, pos_fila, pos_columna)
 
 # Resuelve el tablero utilizando el metodo de backtracking.
@@ -39,7 +39,7 @@ def resolver(tablero, numero_reinas, fila):
 	else:
 		for columna in range(len(tablero)):
 			tablero[fila][columna] = True
-			if not(noAmenazada(tablero, fila, columna) and resolver(tablero, numero_reinas-1, fila+1)):
+			if not(reinaNoAmenazada(tablero, fila, columna) and resolver(tablero, numero_reinas-1, fila+1)):
 				tablero[fila][columna] = False
 			else:
 				return True
