@@ -7,10 +7,12 @@ entrada = sys.argv[1]
 salida = sys.argv[2]
 tamano = int(sys.argv[3])
 
+##
 # Interpreta elemento a elemento (entendiendo como tal a lo que está comprendido entre ',') 
 # cada línea del archivo .csv que se le pasa como parámetro.
 # Convierte los timestamps al formato IS-8601, los numeros a float y mantiene los 'NA' como strings.
 # Genera una lista de listas en donde cada elemento corresponde a la interpretación de una línea. 
+##
 def interpretar(csv):
     res = []
     for i in csv.readlines():
@@ -24,8 +26,10 @@ def interpretar(csv):
         res.append(linea)
     return res
 
+##
 # Devuelve el promedio de los elementos de la secuencia recibida con 2 cifras decimales.
 # Si alguno de estos es NA, el resultado también lo es.
+##
 def promedio(lista):
     res = 'NA'
     i = 0
@@ -37,11 +41,13 @@ def promedio(lista):
         res = round(suma / i, 2)
     return res
 
+##
 # Genera un rango de un tamaño fijo (parámetro) que recorre una lista hasta llegar al último
 # elemento.
 # Si la lista contiene timestamps, calcula la diferencia en segundos entre el extremo "superior" y
 # el "inferior". En el caso contrario, calcula el promedio de todos los elementos.
 # Si el tamaño de la ventana supera la longitud de la lista o es 0, la función retorna [].
+##
 def ventanaDeslizante(lista, tamano):
     res = []
     cota_inf = 0
@@ -56,11 +62,13 @@ def ventanaDeslizante(lista, tamano):
         cota_sup += 1
     return res        
 
+##
 # Devuelve el resultado de aplicar ventanaDeslizante a cada columna del arreglo que recibe
 # como parámetro.
+##
 def analizarPorColumnas(arreglo, tamano):
     res = []
-    # arreglo.shape[1] = número de columnas.
+    # arreglo.shape[1] es el número de columnas.
     for i in range(0, arreglo.shape[1]):
         # Selecciona la columna i.
         columna = arreglo[:, i]

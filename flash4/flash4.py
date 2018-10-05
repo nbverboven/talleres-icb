@@ -1,9 +1,13 @@
+##
 # Verifica que haya una sola reina en la fila que recibe como parametro.
+##
 def filaOk(lista):
 	reinas_en_fila = lista.count(True)
 	return reinas_en_fila == 1
 
+##
 # Verifica que haya una sola reina en la columna pos_columna.
+##
 def columnaOk(tablero, pos_columna):
 	reinas_en_columna = 0
 	fila = 0
@@ -13,8 +17,10 @@ def columnaOk(tablero, pos_columna):
 		fila += 1
 	return reinas_en_columna == 1
 
+##
 # Verifica que haya una sola reina en las diagonales que atraviesan la 
 # posicion tablero[pos_fila][pos_columna].
+##
 def diagonalesOk(tablero, pos_fila, pos_columna):
 	diagonales = []
 	for fila in range(len(tablero)):
@@ -23,17 +29,21 @@ def diagonalesOk(tablero, pos_fila, pos_columna):
 				diagonales.append(tablero[fila][columna])
 	return diagonales.count(True) == 1
 
+##
 # Devuelve True si, para una dada reina en una posicion 
 # tablero[pos_fila][pos_columna], esta es la unica en su fila, su columna y 
 # en las dos diagonales que contienen su ubicacion.
+##
 def reinaNoAmenazada(tablero, pos_fila, pos_columna):
 	return filaOk(tablero[pos_fila]) and columnaOk(tablero, pos_columna) and diagonalesOk(tablero, pos_fila, pos_columna)
 
+##
 # Resuelve el tablero utilizando el metodo de backtracking.
 # Una consideracion que se tuvo con el fin de reducir el tiempo de ejecucion 
 # (aunque no en el peor caso) fue que, si se logra ubicar a una reina en una 
 # posicion, la funcion no sigue probando con las columnas restantes sino 
 # que prosigue a la siguiente fila. 
+##
 def resolver(tablero, numero_reinas, fila):
 	if numero_reinas == 0:
 		return True
